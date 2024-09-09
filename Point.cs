@@ -16,7 +16,7 @@ namespace Snake
         {
 
         }
-        //Принемает 3 аргумента кординаты по оси x по оси y и символ
+        //Võtab 3 argumenti x-koordinaat, y-telg ja sümbol
         public Point(int _x, int _y, char _sym)
         {
             x = _x;

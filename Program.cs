@@ -8,7 +8,7 @@ namespace Snake
 {
     class Program
     {
-        static void Main(string[] args )
+        static void Main(string[] args)
         {
             Point p1 = new Point(1, 3, '*');
             p1.Draw();
@@ -16,8 +16,36 @@ namespace Snake
             Point p2 = new Point(4, 5, '#');
             p2.Draw();
 
+
+            //salvestab täisarvuliste elementide loendi
+            List<int> numList = new List<int>();
+            numList.Add(0);
+            numList.Add(1);
+            numList.Add(2);
+
+            int x = numList[0];
+            int y = numList[1];
+            int z = numList[2];
+
+            //tsükkel loendi kõigi väärtuste järjestikuseks liikumiseks
+
+            foreach (int i in numList)
+            {
+                Console.WriteLine(i);
+            }
+            //remove-konkreetse elemendi eemaldamiseks
+            numList.RemoveAt(0);
+
+            //luua loend, mis sisaldab mitut punkti
+
+            List<Point> plist = new List<Point>();
+            plist.Add(p1);
+            plist.Add(p2);
+
+
+            //!!!Kapseldamine - on klasside omadus peita nende rakendamise üksikasju!!!
+
             Console.ReadLine();
-     
         }
     }
 }
