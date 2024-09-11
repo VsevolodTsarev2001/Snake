@@ -6,48 +6,77 @@ using System.Threading.Tasks;
 
 namespace Snake
 {
-    class Program
+    public class Program
     {
         static void Main(string[] args)
         {
+            Console.SetWindowSize(86, 26);
+
             Point p1 = new Point(1, 3, '*');
             p1.Draw();
 
             Point p2 = new Point(4, 5, '#');
             p2.Draw();
 
-            HorizontalLine line = new HorizontalLine(5, 10, 8, '+ ');
-            line.Drow();
+            HorizontalLine upline = new HorizontalLine(0, 78, 0, '+');
+            upline.Drow();
 
+            HorizontalLine downline = new HorizontalLine(0, 78, 24, '+');
+            downline.Drow();
 
-            //salvestab täisarvuliste elementide loendi
-            List<int> numList = new List<int>();
-            numList.Add(0);
-            numList.Add(1);
-            numList.Add(2);
+            VerticalLine leftline = new VerticalLine(0, 24, 0, '+');
+            leftline.Drow();
 
-            int x = numList[0];
-            int y = numList[1];
-            int z = numList[2];
+            VerticalLine rightline = new VerticalLine(0, 24, 78, '+');
+            rightline.Drow();
 
-            //tsükkel loendi kõigi väärtuste järjestikuseks liikumiseks
+            Snake snake = new Snake(p2, 4, Direction.RIGHT);
+            snake.Drow();
+            snake.Move();
+            Thread.Sleep(300);
+            snake.Move();
+            Thread.Sleep(300);
+            snake.Move();
+            Thread.Sleep(300);
+            snake.Move();
+            Thread.Sleep(300);
+            snake.Move();
+            Thread.Sleep(300);
+            snake.Move();
+            Thread.Sleep(300);
+            snake.Move();
+            Thread.Sleep(300);
+            snake.Move();
+            Thread.Sleep(300);
+            snake.Move();
 
-            foreach (int i in numList)
-            {
-                Console.WriteLine(i);
-            }
-            //remove-konkreetse elemendi eemaldamiseks
-            numList.RemoveAt(0);
+            /* //salvestab täisarvuliste elementide loendi
+             List<int> numList = new List<int>();
+             numList.Add(0);
+             numList.Add(1);
+             numList.Add(2);
 
-            //luua loend, mis sisaldab mitut punkti
+             int x = numList[0];
+             int y = numList[1];
+             int z = numList[2];
 
-            List<Point> plist = new List<Point>();
-            plist.Add(p1);
-            plist.Add(p2);
+             //tsükkel loendi kõigi väärtuste järjestikuseks liikumiseks
 
+             foreach (int i in numList)
+             {
+                 Console.WriteLine(i);
+             }
+             //remove-konkreetse elemendi eemaldamiseks
+             numList.RemoveAt(0);
 
+             //luua loend, mis sisaldab mitut punkti
+
+             List<Point> plist = new List<Point>();
+             plist.Add(p1);
+             plist.Add(p2);
+
+             */
             //!!!Kapseldamine - on klasside omadus peita nende rakendamise üksikasju!!!
-
             Console.ReadLine();
         }
     }
