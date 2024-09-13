@@ -18,6 +18,8 @@ namespace Snake
             Point p2 = new Point(4, 5, '#');
             p2.Draw();
 
+
+
             HorizontalLine upline = new HorizontalLine(0, 78, 0, '+');
             upline.Drow();
 
@@ -32,23 +34,52 @@ namespace Snake
 
             Snake snake = new Snake(p2, 4, Direction.RIGHT);
             snake.Drow();
-            snake.Move();
-            Thread.Sleep(300);
-            snake.Move();
-            Thread.Sleep(300);
-            snake.Move();
-            Thread.Sleep(300);
-            snake.Move();
-            Thread.Sleep(300);
-            snake.Move();
-            Thread.Sleep(300);
-            snake.Move();
-            Thread.Sleep(300);
-            snake.Move();
-            Thread.Sleep(300);
-            snake.Move();
-            Thread.Sleep(300);
-            snake.Move();
+
+            while (true)
+            {
+                if(Console.KeyAvailable)
+                {
+                    ConsoleKeyInfo key = Console.ReadKey();
+                    snake.HandleKey(key.Key);
+                }
+                Thread.Sleep( 100 );
+                snake.Move();
+            }
+            //loome sööke
+            FoodCreator foodCreator = new FoodCreator(80, 25, '$');
+            Point food = foodCreator.CreateFood();
+            food.Draw();
+
+            while (true)
+            {
+                if (snake.Eat(food))
+                {
+                    food = foodCreator.CreateFood();
+                    food.Draw();
+                }
+                else
+                {
+                    snake.Move();
+                }
+            }
+
+            //snake.Move();
+            //Thread.Sleep(300);
+            //snake.Move();
+            //Thread.Sleep(300);
+            //snake.Move();
+            //Thread.Sleep(300);
+            //snake.Move();
+            //Thread.Sleep(300);
+            //snake.Move();
+            //Thread.Sleep(300);
+            //snake.Move();
+            //Thread.Sleep(300);
+            //snake.Move();
+            //Thread.Sleep(300);
+            //snake.Move();
+            //Thread.Sleep(300);
+            //snake.Move();
 
             /* //salvestab täisarvuliste elementide loendi
              List<int> numList = new List<int>();

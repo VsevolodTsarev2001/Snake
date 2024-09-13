@@ -17,11 +17,11 @@ namespace Snake
 
         }
         //Võtab 3 argumenti x-koordinaat, y-telg ja sümbol
-        public Point(int _x, int _y, char _sym)
+        public Point(int x, int y, char sym)
         {
-            x = _x;
-            y = _y;
-            sym = _sym;
+            this.x = x;
+            this.y = y;
+            this.sym = sym;
         }
         public Point(Point p)
         {
@@ -42,12 +42,16 @@ namespace Snake
             }
             else if (direction == Direction.UP)
             {
-                y = y + offset;
+                y = y - offset;
             }
             else if (direction == Direction.DOWN)
             {
-                y = y - offset;
+                y = y + offset;
             }
+        }
+        public bool IsHit(Point p)
+        {
+            return p.x == this.x && p.y == this.y;
         }
         public void Draw(  )
         {
