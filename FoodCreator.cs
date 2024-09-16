@@ -6,25 +6,55 @@ using System.Threading.Tasks;
 
 namespace Snake
 {
-    internal class FoodCreator
+    public class FoodCreator
     {
-        int mapWidht;
+        int mapWidth;
         int mapHeight;
-        char sym;
-
         Random random = new Random();
 
-        public FoodCreator(int mapWidht, int mapHeight, char sym)
+        public FoodCreator(int mapWidth, int mapHeight)
         {
-            this.mapWidht = mapWidht;
+            this.mapWidth = mapWidth;
             this.mapHeight = mapHeight;
-            this.sym = sym;
         }
+
         public Point CreateFood()
         {
-            int x = random.Next(2, mapWidht - 2);
+            int x = random.Next(2, mapWidth - 2);
             int y = random.Next(2, mapHeight - 2);
-            return new Point(x, y, sym);
+
+            char sym;
+            int points;
+            int randomFoodType = random.Next(1, 4); // Randomly select food type
+
+            if (randomFoodType == 1)
+            {
+                sym = '$';  // Apple
+                points = 1;
+            }
+            else if (randomFoodType == 2)
+            {
+                sym = '@';  // Banana
+                points = 2;
+            }
+            else
+            {
+                sym = '#';  // Cherry
+                points = 3;
+            }
+
+            return new FoodPoint(x, y, sym, points);
         }
     }
+
+    public class FoodPoint : Point
+    {
+        public int Points { get; private set; }
+
+        public FoodPoint(int x, int y, char sym, int points) : base(x, y, sym)
+        {
+            Points = points;
+        }
+    }
+
 }
