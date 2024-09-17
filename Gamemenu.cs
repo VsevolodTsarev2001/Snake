@@ -11,10 +11,10 @@ namespace Snake
         public static int ShowMenu()
         {
             Console.Clear();
-            Console.WriteLine("Welcome to Snake Game!");
-            Console.WriteLine("1. Start Game");
-            Console.WriteLine("2. Rules");
-            Console.WriteLine("3. Exit");
+            Console.WriteLine("Tere tulemast Snake mängu!");
+            Console.WriteLine("1. Alusta mängu");
+            Console.WriteLine("2. Reeglid");
+            Console.WriteLine("3. Välju");
 
             ConsoleKeyInfo key = Console.ReadKey();
             if (key.Key == ConsoleKey.D1)
@@ -37,18 +37,18 @@ namespace Snake
         public static int SelectDifficulty()
         {
             Console.Clear();
-            Console.WriteLine("Select difficulty level:");
-            Console.WriteLine("1. Easy (Slow speed)");
-            Console.WriteLine("2. Medium (Normal speed)");
-            Console.WriteLine("3. Hard (Fast speed)");
+            Console.WriteLine("Valige raskusaste:");
+            Console.WriteLine("1. Lihtne (aeglane kiirus)");
+            Console.WriteLine("2. Keskmine (tavaline kiirus)");
+            Console.WriteLine("3. Raske (kiire kiirus)");
 
             ConsoleKeyInfo key = Console.ReadKey();
             if (key.Key == ConsoleKey.D1)
-                return 300; // Easy speed
+                return 300; // Lihtne kiirus
             else if (key.Key == ConsoleKey.D2)
-                return 150; // Medium speed
+                return 150; // Keskmine kiirus
             else if (key.Key == ConsoleKey.D3)
-                return 50;  // Hard speed
+                return 50;  // Raske kiirus
 
             return 150; // Default to Medium
         }
@@ -56,14 +56,14 @@ namespace Snake
         public static void ShowRules()
         {
             Console.Clear();
-            Console.WriteLine("Game Rules:");
-            Console.WriteLine("Eat food to gain points.");
-            Console.WriteLine("Different foods give different points:");
-            Console.WriteLine("1. Apple ($) = 1 point");
-            Console.WriteLine("2. Banana (@) = 2 points");
-            Console.WriteLine("3. Cherry (#) = 3 points");
-            Console.WriteLine("Avoid hitting walls or your own tail.");
-            Console.WriteLine("Press any key to return...");
+            Console.WriteLine("Mängureeglid:");
+            Console.WriteLine("Punktide kogumiseks sööge toitu.");
+            Console.WriteLine("Erinevad toidud annavad erinevaid punkte:");
+            Console.WriteLine("1. õun ($) = 1 punkt");
+            Console.WriteLine("2. Banaan (@) = 2 punktid");
+            Console.WriteLine("3. Kirss (#) = 3 punktid");
+            Console.WriteLine("Vältige seina või enda saba löömist.");
+            Console.WriteLine("Naasmiseks vajutage suvalist klahvi...");
             Console.ReadKey();
         }
     }

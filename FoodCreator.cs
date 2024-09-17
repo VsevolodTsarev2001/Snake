@@ -25,28 +25,28 @@ namespace Snake
 
             char sym;
             int points;
-            int randomFoodType = random.Next(1, 4); // Randomly select food type
+            int randomFoodType = random.Next(1, 4); // Valige juhuslikult toidutüüp
 
             if (randomFoodType == 1)
             {
-                sym = '$';  // Apple
+                sym = '$';  // õun
                 points = 1;
             }
             else if (randomFoodType == 2)
             {
-                sym = '@';  // Banana
+                sym = '@';  // Banaan
                 points = 2;
             }
             else
             {
-                sym = '#';  // Cherry
+                sym = '#';  // Kirss
                 points = 3;
             }
 
             return new FoodPoint(x, y, sym, points);
         }
     }
-
+     
     public class FoodPoint : Point
     {
         public int Points { get; private set; }

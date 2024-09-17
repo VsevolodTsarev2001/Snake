@@ -33,11 +33,11 @@ namespace Snake
                 {
                     Console.Clear();
                     Console.WriteLine("Game Over");
-                    Console.WriteLine($"You earned {gameStats.Points} points");
+                    Console.WriteLine($"Sa teenisid {gameStats.Points} punktid");
                     gameStats.SaveScore("Player1");
                     GameStats.ShowTopScores();
 
-                    Console.WriteLine("Press any key to restart...");
+                    Console.WriteLine("Taaskäivitamiseks vajutage suvalist klahvi...");
                     Console.ReadKey();
                     return;
                 }
