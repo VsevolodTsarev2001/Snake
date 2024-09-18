@@ -10,7 +10,8 @@ namespace Snake
     internal class Snake : Figure
     {
         public Direction direction;
-        public Snake(Point tail, int length, Direction _direction) 
+
+        public Snake(Point tail, int length, Direction _direction)
         {
             direction = _direction;
             pList = new List<Point>();
@@ -30,8 +31,9 @@ namespace Snake
             pList.Add(head);
 
             tail.Clear();
-            head.Draw();
+            Draw();
         }
+
         public Point GetNextPoint()
         {
             Point head = pList.Last();
@@ -39,17 +41,19 @@ namespace Snake
             nextPoint.Move(1, direction);
             return nextPoint;
         }
+
         public void HandleKey(ConsoleKey key)
         {
-            if (key == ConsoleKey.LeftArrow)
+            if (key == ConsoleKey.LeftArrow && direction != Direction.RIGHT)
                 direction = Direction.LEFT;
-            else if (key == ConsoleKey.RightArrow)
+            else if (key == ConsoleKey.RightArrow && direction != Direction.LEFT)
                 direction = Direction.RIGHT;
-            else if (key == ConsoleKey.DownArrow)
+            else if (key == ConsoleKey.DownArrow && direction != Direction.UP)
                 direction = Direction.DOWN;
-            else if (key == ConsoleKey.UpArrow)
+            else if (key == ConsoleKey.UpArrow && direction != Direction.DOWN)
                 direction = Direction.UP;
         }
+
         public bool Eat(Point food)
         {
             Point head = GetNextPoint();
@@ -59,9 +63,9 @@ namespace Snake
                 pList.Add(food);
                 return true;
             }
-            else
-                return false;
+            return false;
         }
+
         internal bool IsHitTail()
         {
             var head = pList.Last();
@@ -71,6 +75,13 @@ namespace Snake
                     return true;
             }
             return false;
+        }
+
+        public new void Draw()
+        {
+            Console.ForegroundColor = ConsoleColor.Green;
+            base.Draw();
+            Console.ResetColor();
         }
     }
 }

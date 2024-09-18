@@ -8,13 +8,15 @@ namespace Snake
 {
     public class Walls
     {
-        List<Figure> wallList;
+        private List<Figure> wallList;
+        private ConsoleColor wallColor;
 
-        public Walls(int mapWidth, int mapHeight)
+        public Walls(int mapWidth, int mapHeight, ConsoleColor wallColor)
         {
             wallList = new List<Figure>();
+            this.wallColor = wallColor;
 
-            // Отрисовка рамочки
+            // Создание рамки
             HorizontalLine upLine = new HorizontalLine(0, mapWidth - 2, 0, '+');
             HorizontalLine downLine = new HorizontalLine(0, mapWidth - 2, mapHeight - 1, '+');
             VerticalLine leftLine = new VerticalLine(0, mapHeight - 1, 0, '+');
@@ -24,6 +26,16 @@ namespace Snake
             wallList.Add(downLine);
             wallList.Add(leftLine);
             wallList.Add(rightLine);
+        }
+
+        public void Draw()
+        {
+            Console.ForegroundColor = wallColor;
+            foreach (var wall in wallList)
+            {
+                wall.Draw();
+            }
+            Console.ResetColor();
         }
 
         internal bool IsHit(Figure figure)
@@ -36,14 +48,6 @@ namespace Snake
                 }
             }
             return false;
-        }
-
-        public void Draw()
-        {
-            foreach (var wall in wallList)
-            {
-                wall.Draw();
-            }
         }
     }
 }

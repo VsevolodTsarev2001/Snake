@@ -31,15 +31,15 @@ namespace Snake
         {
             TimeSpan gameTime = GetGameTime();
             string result = $"{playerName} - Points: {Points}, Time: {gameTime.Minutes}m {gameTime.Seconds}s\n";
-            System.IO.File.AppendAllText("scores.txt", result);
+            System.IO.File.AppendAllText(@"..\..\..\scores.txt", result);
         }
 
         public static void ShowTopScores()
         {
-            if (System.IO.File.Exists("scores.txt"))
+            if (System.IO.File.Exists(@"..\..\..\scores.txt"))
             {
                 Console.WriteLine("Top Players:");
-                string[] scores = System.IO.File.ReadAllLines("scores.txt");
+                string[] scores = System.IO.File.ReadAllLines(@"..\..\..\scores.txt");
                 foreach (string score in scores)
                 {
                     Console.WriteLine(score);
@@ -47,7 +47,7 @@ namespace Snake
             }
             else
             {
-                Console.WriteLine("No scores available.");
+                Console.WriteLine("Vale.");
             }
         }
     }

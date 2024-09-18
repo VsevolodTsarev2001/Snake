@@ -11,10 +11,14 @@ namespace Snake
     {
         static void Main(string[] args)
         {
+            UserSettings userSettings = new UserSettings();
+
             GameStats.ShowTopScores();
 
             int gameSpeed = GameMenu.ShowMenu();
-            Walls walls = new Walls(80, 25);
+            Console.Clear();
+
+            Walls walls = new Walls(80, 25, userSettings.WallColor);
             walls.Draw();
 
             Point startPoint = new Point(4, 5, '*');
@@ -26,18 +30,26 @@ namespace Snake
             food.Draw();
 
             GameStats gameStats = new GameStats();
+            GameDisplay gameDisplay = new GameDisplay(gameStats);
 
             while (true)
             {
+                // Проверка на нажатие клавиш
+                if (Console.KeyAvailable)
+                {
+                    ConsoleKeyInfo key = Console.ReadKey(true);
+                    snake.HandleKey(key.Key); // Управление змеей
+                }
+
                 if (walls.IsHit(snake) || snake.IsHitTail())
                 {
                     Console.Clear();
                     Console.WriteLine("Game Over");
-                    Console.WriteLine($"Sa teenisid {gameStats.Points} punktid");
-                    gameStats.SaveScore("Player1");
+                    Console.WriteLine($"Sa valisid {gameStats.Points} punktid");
+                    gameStats.SaveScore(userSettings.PlayerName);
                     GameStats.ShowTopScores();
 
-                    Console.WriteLine("Taaskäivitamiseks vajutage suvalist klahvi...");
+                    Console.WriteLine("Väljumiseks vajutage suvalist klahvi...");
                     Console.ReadKey();
                     return;
                 }
@@ -53,15 +65,13 @@ namespace Snake
                     snake.Move();
                 }
 
+                gameDisplay.UpdateDisplay();
+
                 Thread.Sleep(gameSpeed);
-                if (Console.KeyAvailable)
-                {
-                    ConsoleKeyInfo key = Console.ReadKey();
-                    snake.HandleKey(key.Key);
-                }
             }
         }
     }
+
 
 
     //Point p1 = new Point(1, 3, '*');
@@ -163,4 +173,4 @@ namespace Snake
     //!!!Kapseldamine - on klasside omadus peita nende rakendamise üksikasju!!!
     //Console.ReadLine();
 }
-    
+
